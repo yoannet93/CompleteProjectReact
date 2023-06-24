@@ -1,10 +1,13 @@
-//import PersonShow from "./PersonShow";
+import PersonShow from "./PersonShow";
 
+function PersonList({ person, onEdit, onDelete }) {
+  const renderedPerson = person.map((person) => {
+    return (
+      <PersonShow key={person.id} onEdit={onEdit} onDelete={onDelete} person={person} />
+    );
+  });
 
-function PersonList(){
-    return(
-        <></>
-    )
-};
+  return <div>{renderedPerson}</div>;
+}
 
 export default PersonList;

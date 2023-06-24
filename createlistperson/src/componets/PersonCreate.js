@@ -3,7 +3,7 @@ import { useState } from 'react';
 function PersonCreate({ onCreate }) {
  const [name, setName] = useState('')
  const handleName=(event)=>{
-    setName(event.target.value);
+   setName(event.target.value);
  }
 
  const handleSubmit=(event)=>{
@@ -13,12 +13,13 @@ function PersonCreate({ onCreate }) {
  }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='person-create'>
+      <form onSubmit={handleSubmit}>
         <label></label>
-        <input value={name} onChange={handleName} />
-        <button>Create!</button>
-    </form>
-
+        <input className="input" value={name} onChange={handleName} />
+        <button className='button'>Create!</button>
+      </form>
+    </div>
   );
 }
 
