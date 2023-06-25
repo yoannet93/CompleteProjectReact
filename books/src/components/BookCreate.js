@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+import BooksContext from '../context/book';
 
 
-function BookCreate({onCreate}){
+function BookCreate(){
    const [title, setTitle] = useState('');
    
    //Maneja el onChange del input para controlar el valor que se está entrando
@@ -9,10 +10,12 @@ function BookCreate({onCreate}){
     setTitle(event.target.value)
    }
 
-   //maneja el envio de el título a traves de la prop onCreate 
+   const { createBook } = useContext(BooksContext)
+
+   
    const handleSubmit = (event) =>{
     event.preventDefault();
-    onCreate(title);
+    createBook(title);
     setTitle('')
    }
 
