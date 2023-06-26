@@ -1,7 +1,8 @@
 import { useState } from "react";
 
+
 function PersonEdit({ person, onSubmit }) {
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState(person.name);
 
   const handleChange = (event) => {
     setNewName(event.target.value);

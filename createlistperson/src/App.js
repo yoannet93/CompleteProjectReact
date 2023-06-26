@@ -1,29 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import PersonCreate from "./componets/PersonCreate";
 import PersonList from "./componets/PersonList";
 
 function App() {
   const [person, setPerson] = useState([]);
 
-  const handleCreatedPerson = (name) => {
-    const updatedPerson = [
-      ...person,
-      { id: Math.round(Math.random() * 999), name: name },
-    ];
+  const fetchPerson = async () => {
+    const response = await axios.get("http://localhost:3001/person");
+    setPerson(response.data);
+  };
+
+  useEffect(() => {
+    fetchPerson();
+  }, []);
+
+  const handleCreatedPerson = async (name) => {
+    const response = await axios.post("http://localhost:3001/person", { name });
+    const updatedPerson = [...person, response.data];
     setPerson(updatedPerson);
   };
 
-  const editNameById = (id, newName) => {
+  const editNameById = async (id, newName) => {
+    const response = await axios.put(`http://localhost:3001/person/${id}`, {
+      newName,
+    });
+
     const updatedName = person.map((person) => {
       if (person.id === id) {
-        return { ...person, name: newName };
+        return { ...person, ...response.data };
       }
       return person;
     });
     setPerson(updatedName);
   };
 
-  const deletePersonById = (id) => {
+  const deletePersonById = async (id) => {
+    await axios.delete(`http://localhost:3001/person/${id}`);
+
     const updatedPerson = person.filter((person) => {
       return person.id !== id;
     });
