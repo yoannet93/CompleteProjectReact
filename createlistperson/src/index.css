@@ -10651,14 +10651,14 @@ a.has-text-danger-dark:hover {
 .person-create form input {
   margin-bottom: 5px;
 }
-.book-list {
+.person-list {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   max-width: 1024px;
 }
 @media screen and (max-width: 960px) {
-  .book-list {
+  .person-list {
     align-items: center;
     display: flex;
     flex-direction: row;

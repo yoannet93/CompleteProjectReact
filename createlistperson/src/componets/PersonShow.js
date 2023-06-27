@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import PersonContext from "../context/person";
 import PersonEdit from "./PersonEdit";
 
-function PersonShow({ person, onEdit, onDelete }) {
-  const [showEdit, setShowEdit] = useState("");
 
-  const handleSubmit = (id, newName) => {
-    setShowEdit(false);
-    onEdit(id, newName);
-  };
+
+function PersonShow({ person }) {
+  const [showEdit, setShowEdit] = useState(false);
+  const { deletePersonById } = useContext(PersonContext);
+
+   const handleDeleteClick = () => {
+     deletePersonById(person.id);
+   };
+   
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
-  const handleDeleteClick = () => {
-    onDelete(person.id);
+ 
+
+  const handleSubmit = () => {
+    setShowEdit(false);
   };
 
   let content = <h3>{person.name}</h3>;

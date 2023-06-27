@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useContext } from "react";
+import PersonContext from "../context/person";
 
 
 function PersonEdit({ person, onSubmit }) {
   const [newName, setNewName] = useState(person.name);
+
+  const { editNameById } = useContext(PersonContext);
 
   const handleChange = (event) => {
     setNewName(event.target.value);
@@ -10,7 +14,8 @@ function PersonEdit({ person, onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(person.id, newName);
+    onSubmit();
+    editNameById(person.id, newName);
   };
 
   return (

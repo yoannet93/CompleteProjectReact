@@ -1,14 +1,21 @@
 import { useState } from 'react'; 
+import { useContext } from 'react';
+import PersonContext from "../context/person"
 
-function PersonCreate({ onCreate }) {
+function PersonCreate() {
  const [name, setName] = useState('')
- const handleName=(event)=>{
+
+ const handleName = (event) => {
    setName(event.target.value);
- }
+ };
+ 
+const { createdPerson } = useContext(PersonContext)
+
+ 
 
  const handleSubmit=(event)=>{
     event.preventDefault();
-    onCreate(name);
+    createdPerson(name);
     setName('');
  }
 
