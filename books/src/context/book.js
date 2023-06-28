@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 import axios from "axios";
 
 const BooksContext = createContext();
@@ -6,10 +6,13 @@ const BooksContext = createContext();
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
 
-  const fetchBooks = async () => {
+  //utilizar use callback con [] como segundo argumento permite que se se ignore la posicion en memoria de la funcion en el segundo renderizado, de esta forma useEffect no se ejecuta nuevamente pues no detecta un cambio en la funcion 
+  //Cada vez que se hace un fetch de datos se actualiza el state(los datos son almacenados en otra posicion y esto se intepreta como un cambio) y esto hace que se ejecute el useEffeectde nuevo porque ve que un elemento en una dependencia de array ha cambiado, precisamente esto lo resuelve el hook useCallback.
+  //Se utiliza como sigue y previamente es necesario importarlo. 
+  const fetchBooks = useCallback(async () => {
     const response = await axios.get("http://localhost:3001/books");
     setBooks(response.data);
-  };
+  },[]);
 
   const createBook = async (title) => {
     const respons = await axios.post("http://localhost:3001/books", { title });
