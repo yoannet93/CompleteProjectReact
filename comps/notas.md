@@ -1,17 +1,32 @@
-# Herramientas utilizadas en el proyecto
+# Tools
 
-1. PropTypes 
-   Es totalmente opcional. 
-   Se trata de una librería de Javascript para validar los parámetetros que pase a mis funciones en funcion del tipo de datos u otra cosa. De este modo puedo enviar mensajes por consola que ayudan a los desarrolladores
-   - Instalar mediante npm
-   - dentro del componente donde lo vaya a utilizar:  
-      import propTypes from "prop-types"
-      y más abajo fuera de la funcion del componente pongo mis instrucciones. ver ejemplo: componente "Button".
+1. Proptypes  
+   `npm install prop-types`
+   
 
+2. Tailwind  
+   https://tailwindcss.com/docs/guides/create-react-app
+    Esta es la guia que se utilizó en el proyecto pear incorporar Tailwind pero estaen desuso.
 
-2. Tailwind
-   En este proyecto se trabaja con el paquete de inicialización de proyecto create-react-app. 
-   Pero la metodología de trabajo para integrar Tailwind varía en funcion de la herramienta que  utilicemos para inicializar un proyecto (Vite, Next.js, etc).
-    Ver documentacion (https://tailwindcss.com/docs/installation/framework-guides)
+    Existen otras en funcion del empaquetador web (Vite, Next.js, etc) que utilice para inicializar mi proyecto
+https://tailwindcss.com/docs/installation/framework-guides
 
-    
+3. classNames para gestionar las clases de estilos y hacer varias combinaciones.  
+   
+ Documentacion: 
+ https://www.npmjs.com/package/classnames
+   
+   `npm install classnames`
+
+   `import className from "classnames"` en el componente donde lo voy a utilizar 
+   
+   Ver Button.js, ejemplo pr'actico de uso.
+4. Iconos en react
+
+https://react-icons.github.io/react-icons/
+
+`npm install react-icons`
+
+importar al inicio del componente el icono que voy a estar utilizando, tal y como lo indica la docuentación 
+
+5.   
