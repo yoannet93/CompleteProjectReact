@@ -83,5 +83,32 @@ https://tailwindcss.com/docs/installation/framework-guides
 
  
  
- 
+ 7. Navigation en React   
+
+   puntos positivos:
+   - No se pierden las configuraciones de JS cdo cambio de vista.
+   - Se trata de mofificar la url y hacer peticiones que muestren en pantalla lo que quiere ver el usuario quitando quellos elementos que estaan y no necesito y poniendo otros.
+
+  Path viene siendo lo que está detras la raiz de mi app ejemplo:
+  `myapp.com/dropdown    path:/dropdown`  
+
+  `react-app.org/accordion  path:/accordion`   
+
+  `localhost:3000/img/preview   path:/img/preview`
   
+   
+- windows.location.pathname   
+  Devuelve el path de mi url
+
+- PopState para rastrear nagigation inside de app
+
+  `window.addEventListener("popstate", handler);`  
+  Este evento controla cada vez que se cambia de un path a otro.
+  Esto es util a la hora de que el usuario quiera darle hacia atras a la pagina o hacia adelante as'i puedo saber cdo lo hace y con otro código evitar el comportamiento por default de refrescar la pantalla y mostrar lo que quiera.
+  
+  `window.history.pushState({}, '', to); `  
+  Actualiza la direccion de la url evitando que se refresque la pagina.
+
+  La idea es cambiar los elementos que muestra mi pantalla en lugar de cambiar ficheros diferentes para mostrarle al usuario una vista diferente, pero si hago esto tengo que hacerle ver al usuario que ha cambiado de página por lo que debo actualizar el path. Esta accion debo hacerla sin que se refresque la pagina de lo contrario no funcionará por eso utilizo esta línea de codigo.
+
+  8.Modal Page 
