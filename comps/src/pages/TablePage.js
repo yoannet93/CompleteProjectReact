@@ -38,7 +38,7 @@ function TablePage() {
 
   return (
     <div>
-      <Table data={data} config={config} keyFn={keyFn} />
+      <Table data={data} config={config} keyFn={keyFn } />
       <SortableTable data={data} config={config} keyFn={keyFn} />
     </div>
   );

@@ -200,3 +200,13 @@
 
     - Orden descendente
 
+11. Pasos para hacer un custom Hook
+
+   1. Hacer una funcion llamada **'useSomething'**
+   2. Encontrar todo el codigo que no sea JSX relacionado con piece of state
+   3. cortarlo y pasarlo a la funcion **'useSomething'**
+   4. Corregir errores de 'not defined'
+   5. En la funcion nueva retornar un objeto con las variables que el componente necesita
+   6. Llamar Hook dentro del componente y extraer las variales dentro del mismo para que puedan ser usadas.
+   7.  Pasar las variables que se necesitan como argumento para que funcione el hook.
+   8.  Renombrar el Hook con algo mas personalizado 
