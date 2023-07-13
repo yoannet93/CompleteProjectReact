@@ -56,7 +56,7 @@
     `value?.label` devuelve undefined si almacena un valor null, en este caso el primer verdadeo seria `"select...`, de lo contrario se muestra el valor seleccionado.
     -Ver lógica completa en el componente Dopdown.
 
-    7.Panel control
+7. Panel control
     Este panel control no es más que un contenedor reutilizable para no repetir estilos
     se implementa como sigue:
 
@@ -82,7 +82,7 @@
 
     - `ClassName={finalClassNames}`: clases de estilos comunes, mas las que se puedan agregar diferenciadas. -` {...rest}`: con esta instruccion incluyo el resto de las propiedades que quiera pasarle de forma individualizada.
 
-7.  Navigation en React
+8.  Navigation en React
 
     puntos positivos:
 
@@ -111,7 +111,7 @@
       La idea es cambiar los elementos que muestra mi pantalla en lugar de cambiar ficheros diferentes para mostrarle al usuario una vista diferente, pero si hago esto tengo que hacerle ver al usuario que ha cambiado de página por lo que debo actualizar el path. Esta accion debo hacerla sin que se refresque la pagina de lo contrario no funcionará por eso utilizo esta línea de codigo. 
       
       
-8. Route
+9. Route
 
      En App.js
 
@@ -138,7 +138,7 @@
      ```
      Es quien controla lo que en definitiva debe ir saliento en pantalla. se le pasa como prop el `path` e internamente en el *Route.js* si este path coincide con el que el usuario clickó pues se muestra en pantalla el hijo que en este caso es `<DropdownPage />`.
 
-9.  Modal Page
+10.  Modal Page
       se trata de lapagina emergente que sale que bloquea todo el fondo.
       La ilusion de que es otra ventana se la dan los estilos pero para que estos funcionen esimprescindible ubicar el contenedor del modal en una posicion específica dentro del DOM para evitar que cualquier cambio en la configuración de posicionamiento no afecte el comportamiento del modal.
       Para ello se utiliza `React.DOM.createPortal`
@@ -167,7 +167,7 @@
       }, []);
       ```
 
-10. Sort of Objects
+11. Sort of Objects
     
     - Orden ascendente
     ```javascript
@@ -200,7 +200,7 @@
 
     - Orden descendente
 
-11. Pasos para hacer un custom Hook
+12. Pasos para hacer un custom Hook para optimizar codigo y no repetir tanto 
 
    1. Hacer una funcion llamada **'useSomething'**
    2. Encontrar todo el codigo que no sea JSX relacionado con piece of state
@@ -210,3 +210,68 @@
    6. Llamar Hook dentro del componente y extraer las variales dentro del mismo para que puedan ser usadas.
    7.  Pasar las variables que se necesitan como argumento para que funcione el hook.
    8.  Renombrar el Hook con algo mas personalizado 
+
+
+13. **useReducer**
+
+    Se trata de un Hoook alternativo a useState
+    -Produce States
+    -Cambiando este estado hace que el componente renderice.
+    -Muy usado cuando tienes algunas varias of states que tienen una relacion cercana como en el caso de CounterPage
+    -useful cuando futuros valores de state dependen del valor actual del estado. 
+
+    `import { useReduce } from React` 
+
+    Definir las variables que van a contener los strings que utilizar'a la funcion reduce para identificar que state esta solicitando modificación 
+    ```javascript
+    const INCREMENT_COUNT = "increment";
+    const SET_VALUE_TO_ADD = "change-value-to-add";
+    const DECREMENT_COUNT = "decrement";
+    const ADD_VALUE_TO_COUNT = "add_value_to_count";
+    ```
+    Almacenar los strings en variables no es necesario puedo asignar y comparar dentro de reduce() los strings directamente. La utilizacion de variables previene errores que se puedan cometer a la hora de poner los string en diferentes lugares. Por el contrario si es un error al poner una variable React lo indica automáticamente.
+
+    Accedo a la funcion **reduce()** mediante el *dispatch* pasandole un object action 
+    ```javascript
+    dispatch({
+      type: ADD_VALUE_TO_COUNT,
+      payload: value
+    })
+    ```
+
+    En este caso en payload paso el valor el valor qie quiero adicionar. el dispatch incremento no necesitaria este valor porque solo se trata de incrementar el numero de la variable del *state*  
+
+
+    Ejemplo de funcion reduce
+
+    ```javascript
+    const reducer = (state, action) => {
+      switch (action.type) {
+        case INCREMENT_COUNT:
+          return {
+            ...state,
+            count: state.count + 1,
+          };
+        case SET_VALUE_TO_ADD:
+          return {
+            ...state,
+            valueToAdd: action.payload,
+          };
+        case DECREMENT_COUNT:
+          return {
+            ...state,
+            count: state.count - 1,
+          };
+          case ADD_VALUE_TO_COUNT:
+            return{
+                ...state,
+                count: state.count + state.valueToAdd,
+                valueToAdd: 0 
+
+            }
+        default:
+          return state;
+      }
+    };
+
+    ```
