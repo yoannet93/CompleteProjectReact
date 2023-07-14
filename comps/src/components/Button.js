@@ -9,7 +9,7 @@ function Button({
   danger,
   outline,
   rounded,
-  ...rest //es un objeto que agrupa todo el resto de propiedades que le pueda pasar al componente al button especialmente para poder manejar los eventos de uan forma eficiente
+  ...rest //es un objeto que agrupa todo el resto de propiedades que le pueda pasar al componente button especialmente para poder manejar los eventos de una forma eficiente
 }) {
 
   //personaliza los estilos segun el tipo de button.

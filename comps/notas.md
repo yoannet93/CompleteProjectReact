@@ -20,7 +20,7 @@
 
     `import className from "classnames"` en el componente donde lo voy a utilizar
 
-    Ver Button.js, ejemplo pr'actico de uso.
+    Ver Button.js, ejemplo práctico de uso.
 
 4.  Iconos en react
 
